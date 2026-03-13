@@ -1,0 +1,356 @@
+{
+  "status": "ok",
+  "data": {
+    "users": [
+      {
+        "id": 1,
+        "name": "Alice Smith",
+        "email": "alice@test.com",
+        "address": {
+          "city": "New York",
+          "state": "NY",
+          "zip": "10001"
+        },
+        "tags": [
+          "admin",
+          "active"
+        ],
+        "age": 34,
+        "salary": 75000,
+        "hire_date": "2019-03-15"
+      },
+      {
+        "id": 2,
+        "name": "Bob Jones",
+        "email": null,
+        "address": {
+          "city": "Los Angeles",
+          "state": "CA"
+        },
+        "tags": [
+          "user"
+        ],
+        "age": null,
+        "salary": "$62,000",
+        "hire_date": "01/22/2020"
+      },
+      {
+        "id": 3,
+        "name": "Carol White",
+        "email": "caroltest.com",
+        "address": {
+          "city": "Chicago",
+          "state": "IL",
+          "zip": "60601"
+        },
+        "tags": [
+          "user",
+          "active"
+        ],
+        "age": 29,
+        "salary": "55000",
+        "hire_date": "Mar 10 2021"
+      },
+      {
+        "id": 4,
+        "name": "  Dave Brown  ",
+        "email": "dave@test.com",
+        "address": {
+          "city": "Houston",
+          "state": "TX",
+          "zip": "77001"
+        },
+        "tags": [],
+        "age": 45,
+        "salary": null,
+        "hire_date": "2020-07-04"
+      },
+      {
+        "id": 5,
+        "name": "Eve Davis",
+        "email": "eve@test.com",
+        "address": {
+          "city": "Phoenix",
+          "state": "AZ"
+        },
+        "tags": [
+          "user"
+        ],
+        "age": "thirty",
+        "salary": 48000,
+        "hire_date": "2022/01/15"
+      },
+      {
+        "id": 6,
+        "name": "Frank Miller",
+        "email": "frank@test.com",
+        "address": {
+          "city": "Philadelphia",
+          "state": "PA",
+          "zip": "19101"
+        },
+        "tags": [
+          "admin"
+        ],
+        "age": 52,
+        "salary": 92000,
+        "hire_date": "15-06-2018"
+      },
+      {
+        "id": 7,
+        "name": "Grace Lee",
+        "email": null,
+        "address": {
+          "city": "San Antonio",
+          "state": "TX"
+        },
+        "tags": [
+          "user"
+        ],
+        "age": 38,
+        "salary": "$71,500",
+        "hire_date": "2021-09-30"
+      },
+      {
+        "id": 8,
+        "name": "Hank Wilson",
+        "email": "hank@test.com",
+        "address": {
+          "city": "San Diego",
+          "state": "CA",
+          "zip": "92101"
+        },
+        "tags": [
+          "user"
+        ],
+        "age": -3,
+        "salary": 59000,
+        "hire_date": "N/A"
+      },
+      {
+        "id": 9,
+        "name": "Iris Moore",
+        "email": "iris@test.com",
+        "address": {
+          "city": "Dallas",
+          "state": "TX",
+          "zip": "75201"
+        },
+        "tags": [
+          "user",
+          "active"
+        ],
+        "age": 31,
+        "salary": 67000,
+        "hire_date": "Apr 01, 2022"
+      },
+      {
+        "id": 10,
+        "name": "Jack Taylor",
+        "email": "jack@",
+        "address": {
+          "city": "San Jose",
+          "state": "CA"
+        },
+        "tags": [
+          "user"
+        ],
+        "age": 27,
+        "salary": 53000,
+        "hire_date": "2023-02-28"
+      },
+      {
+        "id": 11,
+        "name": "Karen Anderson",
+        "email": "karen@test.com",
+        "address": {
+          "city": "Austin",
+          "state": "TX",
+          "zip": "78701"
+        },
+        "tags": [
+          "admin",
+          "active"
+        ],
+        "age": 44,
+        "salary": "85,000",
+        "hire_date": "2017-11-01"
+      },
+      {
+        "id": 12,
+        "name": "Leo Thomas",
+        "email": "leo@test.com",
+        "address": {
+          "city": "Jacksonville",
+          "state": "FL"
+        },
+        "tags": [
+          "user"
+        ],
+        "age": null,
+        "salary": 49000,
+        "hire_date": "null"
+      },
+      {
+        "id": 13,
+        "name": "Mia Jackson",
+        "email": "mia@test.com",
+        "address": {
+          "city": "Fort Worth",
+          "state": "TX",
+          "zip": "76101"
+        },
+        "tags": [
+          "user"
+        ],
+        "age": 36,
+        "salary": 62000,
+        "hire_date": "2020-05-17"
+      },
+      {
+        "id": 14,
+        "name": "Nick Harris",
+        "email": null,
+        "address": {
+          "city": "Columbus",
+          "state": "OH"
+        },
+        "tags": [],
+        "age": 28,
+        "salary": "N/A",
+        "hire_date": "18-09-2021"
+      },
+      {
+        "id": 15,
+        "name": "Olivia Martin",
+        "email": "olivia@test.com",
+        "address": {
+          "city": "Charlotte",
+          "state": "NC",
+          "zip": "28201"
+        },
+        "tags": [
+          "user",
+          "active"
+        ],
+        "age": 33,
+        "salary": 71000,
+        "hire_date": "2019-12-05"
+      },
+      {
+        "id": 16,
+        "name": "Paul Garcia",
+        "email": "paul@test.com",
+        "address": {
+          "city": "Indianapolis",
+          "state": "IN"
+        },
+        "tags": [
+          "user"
+        ],
+        "age": 999,
+        "salary": 58000,
+        "hire_date": "June 30, 2022"
+      },
+      {
+        "id": 17,
+        "name": "Quinn Martinez",
+        "email": "quinn@test.com",
+        "address": {
+          "city": "San Francisco",
+          "state": "CA",
+          "zip": "94101"
+        },
+        "tags": [
+          "admin"
+        ],
+        "age": 41,
+        "salary": 105000,
+        "hire_date": "2016-08-22"
+      },
+      {
+        "id": 18,
+        "name": "Rose Robinson",
+        "email": "rosetest.com",
+        "address": {
+          "city": "Seattle",
+          "state": "WA"
+        },
+        "tags": [
+          "user"
+        ],
+        "age": 26,
+        "salary": "$56,000",
+        "hire_date": "2023-07-10"
+      },
+      {
+        "id": 19,
+        "name": "Sam Clark",
+        "email": "sam@test.com",
+        "address": {
+          "city": "Denver",
+          "state": "CO",
+          "zip": "80201"
+        },
+        "tags": [
+          "user",
+          "active"
+        ],
+        "age": 37,
+        "salary": 68000,
+        "hire_date": "2020-03-01"
+      },
+      {
+        "id": 20,
+        "name": "  Tina Rodriguez  ",
+        "email": "tina@test.com",
+        "address": {
+          "city": "Nashville",
+          "state": "TN"
+        },
+        "tags": [
+          "user"
+        ],
+        "age": 23,
+        "salary": 44000,
+        "hire_date": "01/05/2024"
+      },
+      {
+        "id": 21,
+        "name": "Uma Lewis",
+        "email": "uma@test.com",
+        "address": {
+          "city": "Oklahoma City",
+          "state": "OK",
+          "zip": "73101"
+        },
+        "tags": [
+          "user"
+        ],
+        "age": 30,
+        "salary": 51000,
+        "hire_date": "15-12-2022"
+      },
+      {
+        "id": 22,
+        "name": "Vince Lee",
+        "email": "vince@test.com",
+        "address": {
+          "city": "El Paso",
+          "state": "TX"
+        },
+        "tags": [
+          "admin",
+          "active"
+        ],
+        "age": 48,
+        "salary": 88000,
+        "hire_date": "2015-04-19"
+      }
+    ]
+  },
+  "pagination": {
+    "page": 1,
+    "total": 22
+  }
+}

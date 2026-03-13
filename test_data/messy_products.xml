@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+  <product id="1"><name>Widget A</name><price currency="USD">19.99</price><category>Electronics</category><in_stock>true</in_stock><rating>4.5</rating></product>
+  <product id="2"><name>Gadget B</name><price currency="USD">$34.99</price><category>electronics</category><in_stock>TRUE</in_stock><rating>3</rating></product>
+  <product id="3"><name>Gizmo C</name><price currency="USD">N/A</price><category>ELECTRONICS</category><in_stock>false</in_stock><rating>5</rating></product>
+  <product id="4"><name>Thingamajig D</name><price currency="USD">9.99</price><category>Clothing</category><in_stock>True</in_stock><rating>null</rating></product>
+  <product id="5"><name>Doohickey E</name><price currency="USD">24.99</price><category>clothing</category><in_stock>1</in_stock><rating>4</rating></product>
+  <product id="6"><name>Whatsit F</name><price currency="USD">$14.50</price><category>CLOTHING</category><in_stock>0</in_stock><rating>N/A</rating></product>
+  <product id="7"><name>Contraption G</name><price currency="USD">49.99</price><category>Home &amp; Garden</category><in_stock>true</in_stock><rating>4.5</rating></product>
+  <product id="8"><name>Apparatus H</name><price currency="USD">-5.00</price><category>home &amp; garden</category><in_stock>false</in_stock><rating>2</rating></product>
+  <product id="9"><name>Device I</name><price currency="USD">99.99</price><category>Electronics</category><in_stock>True</in_stock><rating>5</rating></product>
+  <product id="10"><name>Mechanism J</name><price currency="USD">$129.99</price><category>electronics</category><in_stock>1</in_stock><rating>3.5</rating></product>
+  <product id="11"><name>Instrument K</name><price currency="USD">59.99</price><category>Sports</category><in_stock>true</in_stock><rating>4</rating></product>
+  <product id="12"><name>Artifact L</name><price currency="USD">N/A</price><category>sports</category><in_stock>null</in_stock><rating>null</rating></product>
+  <product id="13"><name>Component M</name><price currency="USD">7.49</price><category>SPORTS</category><in_stock>TRUE</in_stock><rating>3</rating></product>
+  <product id="14"><name>  Part N  </name><price currency="USD">22.00</price><category>Electronics</category><in_stock>false</in_stock><rating>4.5</rating></product>
+  <product id="15"><name>Element O</name><price currency="USD">$999999</price><category>Clothing</category><in_stock>True</in_stock><rating>1</rating></product>
+  <product id="16"><name>Widget P</name><price currency="USD">18.99</price><category>Home &amp; Garden</category><in_stock>1</in_stock><rating>4</rating></product>
+  <product id="17"><name>Gadget Q</name><price currency="USD">$44.99</price><category>home &amp; garden</category><in_stock>0</in_stock><rating>N/A</rating></product>
+  <product id="18"><name>Gizmo R</name><price currency="USD">33.00</price><category>Sports</category><in_stock>true</in_stock><rating>5</rating></product>
+  <product id="19"><name>Thingamajig S</name><price currency="USD">-</price><category>Electronics</category><in_stock>True</in_stock><rating>null</rating></product>
+  <product id="20"><name>Doohickey T</name><price currency="USD">11.99</price><category>ELECTRONICS</category><in_stock>false</in_stock><rating>3.5</rating></product>
+  <product id="21"><name>Widget A</name><price currency="USD">19.99</price><category>Electronics</category><in_stock>true</in_stock><rating>4.5</rating></product>
+</catalog>

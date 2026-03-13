@@ -1,0 +1,51 @@
+order_id,customer_name,email,phone,product,category,price,quantity,order_date,country,status,rating
+1001,John Smith,john.smith@email.com,555-123-4567,Laptop Pro 15,Electronics,$1234.56,2,2024-01-15,US,completed,4.5
+1002,Jane Doe,jane.doe@email.com,555-234-5678,Wireless Mouse,Electronics,$29.99,5,2024-01-22,US,completed,5
+1003,Bob Johnson,bobjohnson@email.com,5553456789,USB-C Hub,Electronics,$49.99,3,2024-01-28,United States,shipped,4
+1004,Alice Williams,alice@williams@test.com,+1-555-456-7890,Mechanical Keyboard,Electronics,$89.99,1,2024-02-03,US,pending,3.5
+1005,Charlie Brown,charlie.brown@email.com,(555) 567-8901,Monitor 27in,Electronics,$299.99,1,2024-02-10,US,completed,5
+1006,Diana Prince,diana@prince.com,555-678-9012,Webcam HD,Electronics,$79.99,2,2024-02-14,US,completed,4
+1007,Eve Wilson ,eve.wilson@email.com,5556789012,Laptop Pro 15,Electronics,$1234.56,2,2024-02-20,United States,shipped,4.5
+1008,Frank Miller,frank.miller@,+1-555-789-0123,Gaming Headset,Electronics,$149.99,twenty,2024-02-25,US,pending,nan
+1009,Grace Lee,grace.lee@email.com,(555) 890-1234,Laptop Pro 15,Electronics,999999,1,2024-01-03,US,completed,5
+1010,Henry Davis,henry.davis@email.com,555-901-2345,Wireless Mouse,Electronics,$29.99,4,2024-03-05,US,completed,4
+1011,Iris Chen,iris.chen@email.com,5559012346,USB-C Hub,Electronics,$49.99,2,2024-03-10,US,shipped,3
+1012,Jack Taylor,jack.taylor@email.com,+1-555-012-3456,Mechanical Keyboard,Electronics,$89.99,,2024-03-15,United States,pending,nan
+1013,Kate Martin,kate.martin@email.com,(555) 123-4568,Monitor 27in,Electronics,$299.99,1,2024-03-20,US,completed,4.5
+1014,Liam Anderson,liam.anderson@email.com,555-234-5679,Webcam HD,Electronics,$79.99,3,2024-03-25,US,completed,5
+1015, Mike Thomas,mike.thomas@email.com,5552345680,Bluetooth Speaker,Electronics,$59.99,2,2024-04-01,US,shipped,4
+1016,Nancy Jackson,nancyjackson.net,+1-555-345-6789,Gaming Mouse,Electronics,$69.99,1,2024-04-05,US,completed,3.5
+1017,Oscar White,oscar.white@email.com,(555) 456-7891,Laptop Pro 15,Electronics,$1234.56,2,2024-04-12,US,completed,5
+1018,Patty Harris,patty.harris@email.com,555-567-8902,USB-C Hub,Electronics,$49.99,5,2024-04-18,US,pending,4
+1019,Quinn Lewis,quinn.lewis@email.com,5565678903,Wireless Earbuds,Electronics,$99.99,1,2024-04-22,United States,shipped,4.5
+1020,Rachel Clark,rachel.clark@email.com,+1-555-678-9013,Mechanical Keyboard,Electronics,$89.99,2,2024-04-28,US,completed,nan
+1021,Steve Hall,steve.hall@email.com,(555) 789-0124,Monitor 27in,Electronics,$299.99,1,2024-05-03,US,completed,5
+1022,Tina Young,tina.young@email.com,555-890-1235,Gaming Headset,Electronics,$149.99,-5,2024-05-08,US,returned,2
+1023,Uma King,uma.king@email.com,5558901236,Webcam HD,Electronics,$79.99,2,2024-05-15,United States,completed,4
+1024,Victor Scott,victor.scott@email.com,+1-555-901-2346,Bluetooth Speaker,Electronics,$59.99,3,2024-05-20,US,shipped,3.5
+1025,Wendy Green,wendy.green@email.com,(555) 012-3457,Gaming Mouse,Electronics,$69.99,1,2024-05-25,US,pending,nan
+1026,Xander Baker,xander.baker@email.com,555-123-4568,Laptop Pro 15,Electronics,$1234.56,2,2024-06-01,US,completed,5
+1027,Yara Adams,yara.adams@email.com,5551234569,USB-C Hub,Electronics,$49.99,4,2024-06-08,United States,completed,4
+1028,Zoe Nelson,zoe.nelson@email.com,+1-555-234-5679,Wireless Mouse,Electronics,$29.99,,2024-06-12,US,pending,4.25
+1029,Aaron Campbell,aaron.campbell@email.com,(555) 345-6790,Wireless Earbuds,Electronics,$99.99,2,2024-06-18,US,shipped,4.5
+1030,Beth Mitchell,beth.mitchell@email.com,555-456-7892,Mechanical Keyboard,Electronics,$89.99,1,2024-06-25,US,completed,5
+1031,Carl Perez,carl.perez@email.com,5554567893,Monitor 27in,Electronics,$299.99,1,2024-07-01,United States,completed,4
+1032,Dana Roberts,dana.roberts@email.com,555-567-8903,Gaming Headset,Electronics,$149.99,3,2024-07-05,US,shipped,3.5
+1033,Eric Turner,eric.turner@email.com,(555) 678-9014,Webcam HD,Electronics,$79.99,2,2024-07-10,US,pending,nan
+1034,Fiona Phillips,fiona.phillips@email.com,555-789-0125,Bluetooth Speaker,Electronics,$59.99,4,2024-07-15,US,completed,5
+1035,George Evans,george.evans@email.com,5557890126,Gaming Mouse,Electronics,$69.99,1,2024-07-20,United States,completed,4
+1036,Hannah Collins,hannah.collins@email.com,+1-555-890-1236,Laptop Pro 15,Electronics,$1234.56,2,2024-07-28,US,shipped,4.5
+1037,Ian Stewart,ian.stewart@email.com,(555) 901-2347,USB-C Hub,Electronics,$49.99,3,2024-08-03,US,completed,4
+1038,Julia Morris,julia.morris@email.com,555-012-3457,Wireless Mouse,Electronics,$29.99,5,2024-08-10,US,completed,5
+1039,Kevin Rogers,kevin.rogers@email.com,5550123458,Wireless Earbuds,Electronics,$99.99,2,2024-08-15,United States,pending,3.5
+1040,Laura Reed,laura.reed@email.com,+1-555-123-4569,Mechanical Keyboard,Electronics,$89.99,,2024-08-20,US,shipped,nan
+1041,Mark Cook,mark.cook@email.com,555-234-5680,Monitor 27in,Electronics,$299.99,1,2024-08-25,US,completed,5
+1042,Nina Bailey,nina.bailey@email.com,555-345-6791,Gaming Headset,Electronics,$149.99,2,2024-09-01,US,shipped,4
+1043,Owen Rivera,owen.rivera@email.com,5553456792,Webcam HD,Electronics,$79.99,3,2024-09-05,United States,completed,3.5
+1044,Paula Ward,paula.ward@email.com,+1-555-456-7891,Bluetooth Speaker,Electronics,$59.99,1,2024-09-10,US,pending,nan
+1045,Quinn Lewis,quinn.lewis@email.com,5565678904,Wireless Earbuds,Electronics,$99.99,2,2024-09-15,United States,shipped,4.5
+1046,Rose Perry,rose.perry@email.com,(555) 567-8903,Gaming Mouse,Electronics,$69.99,4,2024-09-20,US,completed,5
+1047,Sam Hughes,sam.hughes@email.com,555-678-9015,Laptop Pro 15,Electronics,"$1,299.00",2,2024-09-25,US,completed,4
+1048,Tara Foster,tara.foster@email.com,555-678-9016,USB-C Hub,Electronics,$49.99,,2024-10-01,United States,pending,3
+1049,Ursula Sanders,ursula.sanders@email.com,+1-555-789-0126,Wireless Mouse,Electronics,$29.99,3,2024-10-05,US,shipped,4.5
+1050,Victor Scott ,victor.scott@email.com,+1-555-901-2346,Bluetooth Speaker,Electronics,$59.99,3,2024-05-20,US,shipped,3.5

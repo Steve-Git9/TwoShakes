@@ -1,0 +1,53 @@
+order_id,customer_name,email,phone,product,category,price,quantity,order_date,country,status,rating
+1001,John Smith,john.smith@email.com,(555) 123-4567,Laptop Pro 15,Electronics,$1234.56,2,2024-01-15,US,completed,4.5
+1002,Jane Doe,jane.doe@email.com,555-234-5678,Wireless Mouse,electronics,$29.99,5,01/22/2024,USA,completed,5
+1003,Bob Johnson,bobjohnson.com,5553456789,USB-C Hub,ELECTRONICS,$49.99,3,Jan 28 2024,United States,shipped,4
+1004,Alice Williams,alice@williams@test.com,+1-555-456-7890,Mechanical Keyboard,Elect.,$89.99,1,2024-02-03,U.S.,pending,3.5
+1005,Charlie Brown,charlie.brown@email.com,(555) 567-8901,Monitor 27in,Electronics,$299.99,1,02/10/2024,US,completed,5
+1006,Diana Prince,diana@prince.com,555-678-9012,Webcam HD,electronics,$79.99,2,Feb 14 2024,USA,completed,4
+1007,Eve Wilson ,eve.wilson@email.com,5556789012,Laptop Pro 15,Electronics,$1234.56,2,2024-02-20,United States,shipped,4.5
+1008,Frank Miller,frank.miller@,+1-555-789-0123,Gaming Headset,ELECTRONICS,$149.99,twenty,2024-02-25,US,pending,N/A
+1009,Grace Lee,grace.lee@email.com,(555) 890-1234,Laptop Pro 15,Electronics,999999,1,01/03/2024,USA,completed,5
+1010,Henry Davis,henry.davis@email.com,555-901-2345,Wireless Mouse,electronics,$29.99,4,Mar 05 2024,US,completed,4
+1011,Iris Chen,iris.chen@email.com,5559012346,USB-C Hub,ELECTRONICS,$49.99,2,2024-03-10,USA,shipped,3
+1012,Jack Taylor,jack.taylor@email.com,+1-555-012-3456,Mechanical Keyboard,Elect.,$89.99,null,15-03-2024,United States,pending,null
+1013,Kate Martin,kate.martin@email.com,(555) 123-4568,Monitor 27in,Electronics,$299.99,1,2024-03-20,U.S.,completed,4.5
+1014,Liam Anderson,liam.anderson@email.com,555-234-5679,Webcam HD,electronics,$79.99,3,03/25/2024,US,completed,5
+1015, Mike Thomas,mike.thomas@email.com,5552345680,Bluetooth Speaker,Electronics,$59.99,2,Apr 01 2024,USA,shipped,4
+1016,Nancy Jackson,nancyjackson.net,+1-555-345-6789,Gaming Mouse,electronics,$69.99,1,2024-04-05,us,completed,3.5
+1017,Oscar White,oscar.white@email.com,(555) 456-7891,Laptop Pro 15,ELECTRONICS,$1234.56,2,04/12/2024,US,completed,5
+1018,Patty Harris,patty.harris@email.com,555-567-8902,USB-C Hub,Elect.,$49.99,5,Apr 18 2024,USA,pending,4
+1019,Quinn Lewis,quinn.lewis@email.com,5565678903,Wireless Earbuds,Electronics,$99.99,1,2024-04-22,United States,shipped,4.5
+1020,Rachel Clark,rachel.clark@email.com,+1-555-678-9013,Mechanical Keyboard,electronics,$89.99,2,04/28/2024,U.S.,completed,N/A
+1021,Steve Hall,steve.hall@email.com,(555) 789-0124,Monitor 27in,ELECTRONICS,$299.99,1,May 03 2024,US,completed,5
+1022,Tina Young,tina.young@email.com,555-890-1235,Gaming Headset,Electronics,$149.99,-5,2024-05-08,USA,returned,2
+1023,Uma King,uma.king@email.com,5558901236,Webcam HD,electronics,$79.99,2,05/15/2024,United States,completed,4
+1024,Victor Scott,victor.scott@email.com,+1-555-901-2346,Bluetooth Speaker,Elect.,$59.99,3,May 20 2024,us,shipped,3.5
+1025,Wendy Green,wendy.green@email.com,(555) 012-3457,Gaming Mouse,Electronics,$69.99,1,2024-05-25,US,pending,N/A
+1026,Xander Baker,xander.baker@email.com,555-123-4568,Laptop Pro 15,ELECTRONICS,$1234.56,2,06/01/2024,USA,completed,5
+1027,Yara Adams,yara.adams@email.com,5551234569,USB-C Hub,electronics,$49.99,4,Jun 08 2024,United States,completed,4
+1028,Zoe Nelson,zoe.nelson@email.com,+1-555-234-5679,Wireless Mouse,Electronics,$29.99,NULL,2024-06-12,U.S.,pending,-
+1029,Aaron Campbell,aaron.campbell@email.com,(555) 345-6790,Wireless Earbuds,electronics,$99.99,2,06/18/2024,US,shipped,4.5
+1030,Beth Mitchell,beth.mitchell@email.com,555-456-7892,Mechanical Keyboard,ELECTRONICS,$89.99,1,Jun 25 2024,USA,completed,5
+1031,Carl Perez,carl.perez@email.com,5554567893,Monitor 27in,Elect.,$299.99,1,2024-07-01,United States,completed,4
+1032,Dana Roberts,dana.roberts@email.com,+1-555-567-8903,Gaming Headset,Electronics,$149.99,3,07/05/2024,us,shipped,3.5
+1033,Eric Turner,eric.turner@email.com,(555) 678-9014,Webcam HD,electronics,$79.99,2,Jul 10 2024,US,pending,N/A
+1034,Fiona Phillips,fiona.phillips@email.com,555-789-0125,Bluetooth Speaker,ELECTRONICS,$59.99,4,2024-07-15,USA,completed,5
+1035,George Evans,george.evans@email.com,5557890126,Gaming Mouse,Elect.,$69.99,1,07/20/2024,United States,completed,4
+1002,Jane Doe,jane.doe@email.com,555-234-5678,Wireless Mouse,electronics,$29.99,5,01/22/2024,USA,completed,5
+1036,Hannah Collins,hannah.collins@email.com,+1-555-890-1236,Laptop Pro 15,Electronics,$1234.56,2,Jul 28 2024,U.S.,shipped,4.5
+1037,Ian Stewart,ian.stewart@email.com,(555) 901-2347,USB-C Hub,electronics,$49.99,3,2024-08-03,US,completed,4
+1038,Julia Morris,julia.morris@email.com,555-012-3457,Wireless Mouse,ELECTRONICS,$29.99,5,08/10/2024,USA,completed,5
+1039,Kevin Rogers,kevin.rogers@email.com,5550123458,Wireless Earbuds,Elect.,$99.99,2,Aug 15 2024,United States,pending,3.5
+1040,Laura Reed,laura.reed@email.com,+1-555-123-4569,Mechanical Keyboard,Electronics,$89.99,N/A,2024-08-20,us,shipped,N/A
+1001,John Smith,john.smith@email.com,(555) 123-4567,Laptop Pro 15,Electronics,$1234.56,2,2024-01-15,US,completed,4.5
+1041,Mark Cook,mark.cook@email.com,(555) 234-5680,Monitor 27in,electronics,$299.99,1,08/25/2024,US,completed,5
+1042,Nina Bailey,nina.bailey@email.com,555-345-6791,Gaming Headset,ELECTRONICS,$149.99,2,Sep 01 2024,USA,shipped,4
+1043,Owen Rivera,owen.rivera@email.com,5553456792,Webcam HD,Elect.,$79.99,3,2024-09-05,United States,completed,3.5
+1044,Paula Ward,paula.ward@email.com,+1-555-456-7891,Bluetooth Speaker,Electronics,$59.99,1,09/10/2024,U.S.,pending,N/A
+1045,Quinn Lewis,quinn.lewis@email.com,5565678904,Wireless Earbuds,Electronics,$99.99,2,2024-09-15,United States,shipped,4.5
+1046,Rose Perry,rose.perry@email.com,(555) 567-8903,Gaming Mouse,electronics,$69.99,4,Sep 20 2024,US,completed,5
+1047,Sam Hughes,sam.hughes@email.com,555-678-9015,Laptop Pro 15,ELECTRONICS,"$1,299.00",2,2024-09-25,USA,completed,4
+1048,Tara Foster,tara.foster@email.com,5556789016,USB-C Hub,Elect.,$49.99,,10/01/2024,United States,pending,3
+1049,Ursula Sanders,ursula.sanders@email.com,+1-555-789-0126,Wireless Mouse,Electronics,$29.99,3,Oct 05 2024,us,shipped,4.5
+1050,Victor Scott ,victor.scott@email.com,+1-555-901-2346,Bluetooth Speaker,electronics,$59.99,3,20-05-2024,US,shipped,3.5
