@@ -1,4 +1,4 @@
-🧹 DataPrepAgent
+# 🧹 DataPrepAgent
 
 **AI-Powered Data Preparation — From Messy to Analysis-Ready in Minutes**
 
