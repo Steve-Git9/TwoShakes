@@ -103,8 +103,9 @@ The full pipeline is exposed as 7 MCP tools. Connect from GitHub Copilot Agent M
 |---|---|
 | ![Plan](docs/screenshots/plan.png) | ![Results](docs/screenshots/results.png) |
 
-<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/MLready.png" width="300"/>
-<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/download.png" width="300"/>
+| Feature Engineering | Download |
+|---|---|
+| ![FE](docs/screenshots/MLready.png) | ![FE](docs/screenshots/download.png) | |
 
 ```
 ## Quick Start
