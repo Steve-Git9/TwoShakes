@@ -74,7 +74,7 @@ The repo includes a [`.vscode/mcp.json`](.vscode/mcp.json) configuration file th
     "dataprepagent": {
       "command": "python",
       "args": ["src/mcp_server.py"],
-      "env": { "AZURE_AI_PROJECT_ENDPOINT": "...", "AZURE_AI_PROJECT_KEY": "...", "AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-4o" }
+      "env": { "AZURE_AI_PROJECT_ENDPOINT": "...", "AZURE_AI_PROJECT_KEY": "...", "AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-4o-mini" }
     }
   }
 }
@@ -92,51 +92,7 @@ The repo includes a [`.vscode/mcp.json`](.vscode/mcp.json) configuration file th
 
 ## Architecture — 8-Agent Orchestrated Pipeline
 
-```mermaid
-graph TB
-    subgraph Azure["☁️ Microsoft Azure Foundry"]
-        GPT["GPT-4o Model<br/><i>azure-ai-projects SDK</i>"]
-        DI["Document Intelligence<br/><i>prebuilt-layout</i>"]
-    end
-
-    ORC["🎯 Orchestrator Agent<br/><i>A2A messaging · retry loop</i>"]
-    
-    subgraph Cleaning["🧹 Cleaning Pipeline"]
-        direction LR
-        ING["Ingestion"] --> PRO["Profiler"]
-        PRO --> STR["Strategy"]
-        STR --> CLN["Cleaner"]
-    end
-
-    HR1["👤 Human Review<br/><i>approve / reject / edit each action</i>"]
-    VAL["✅ Validator<br/><i>6 checks + LLM quality certificate</i>"]
-
-    subgraph FE["🔬 Feature Engineering Pipeline"]
-        direction LR
-        FEA["FE Agent<br/><i>18 transform types</i>"] --> FET["FE Transformer<br/><i>sklearn executor</i>"]
-    end
-
-    HR2["👤 Human Review"]
-    OUT["📥 Download<br/><i>CSV · Excel · Parquet</i>"]
-
-    Azure -.->|API calls| ORC
-    ORC --> Cleaning
-    Cleaning --> HR1
-    HR1 --> VAL
-    VAL -->|"score < target"| STR
-    VAL -->|"clean enough"| FE
-    FE --> HR2
-    HR2 --> OUT
-    VAL -->|"skip ML prep"| OUT
-
-    subgraph Side["🔌 Integrations"]
-        MCP["MCP Server<br/><i>7 tools · stdio</i>"]
-        COPILOT["GitHub Copilot<br/><i>Agent Mode via .vscode/mcp.json</i>"]
-        AUDIT["Audit Log<br/><i>JSONL · SHA-256</i>"]
-    end
-
-    ORC -.-> Side
-```
+![Architecture](docs/architecture.png)
 
 **Agentic design patterns used:**
 - **Multi-agent collaboration**: 8 specialized agents, each with a single responsibility
@@ -230,7 +186,7 @@ Open http://localhost:8501 and upload any of the demo files in `test_data/`.
 ```
 AZURE_AI_PROJECT_ENDPOINT=https://your-project.services.ai.azure.com
 AZURE_AI_PROJECT_KEY=your-api-key
-AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
+AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o-mini
 AZURE_DOCUMENT_INTELLIGENCE_KEY=your-key
 AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT=https://your-resource.cognitiveservices.azure.com
 ```
@@ -252,7 +208,7 @@ Add to your `.vscode/mcp.json`:
       "env": {
         "AZURE_AI_PROJECT_ENDPOINT": "...",
         "AZURE_AI_PROJECT_KEY": "...",
-        "AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-4o"
+        "AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-4o-mini"
       }
     }
   }
@@ -271,7 +227,7 @@ Then in Copilot Agent Mode, ask: *"Profile the file test_data/messy_sales.csv an
       "env": {
         "AZURE_AI_PROJECT_ENDPOINT": "...",
         "AZURE_AI_PROJECT_KEY": "...",
-        "AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-4o"
+        "AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-4o-mini"
       }
     }
   }
