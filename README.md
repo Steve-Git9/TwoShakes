@@ -9,64 +9,87 @@
 ![MCP](https://img.shields.io/badge/MCP-Server_Enabled-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-> 🏗️ Built for the Microsoft Purpose-Built AI Platform Hackathon
-> Targeting: **Best Overall** · **Best Use of Microsoft Foundry** · **Best Multi-Agent System** · **Best Enterprise Solution** · **Best Azure Integration**
+> 🏗️ Built for the **Microsoft Purpose-Built AI Platform Hackathon**
+> Category: **Best Use of Microsoft Foundry** · Also targeting: **Best Multi-Agent System** · **Best Enterprise Solution**
+
+---
+
+## How It Works in 60 Seconds
+
+1. **Upload** any messy data file — CSV, Excel, JSON, XML, or even a PDF with tables
+2. **AI profiles** every column: detects types, missing values, outliers, duplicates, and scores quality 0–100
+3. **Review a cleaning plan** — approve, reject, or tweak each AI-proposed action before anything runs
+4. **Optionally prepare for ML** — the AI recommends encoding, scaling, and feature transforms tailored to your data
+5. **Download** your analysis-ready dataset as CSV, Excel, or Parquet
+
+The LLM decides *what* to fix. Python executes it deterministically. Your data, your call: nothing changes without your approval.
 
 ---
 
 ## The Problem
 
-Data scientists spend **60–80% of their time** on data cleaning. Messy CSVs, inconsistent Excel exports, nested JSON APIs — every dataset needs hours of manual wrangling before any analysis can begin. This is the most tedious, least valuable part of the data science workflow.
+Data scientists spend **60–80% of their time** on data cleaning and preparation. Messy CSVs with mixed date formats, Excel exports with merged cells, nested JSON APIs with missing fields — every dataset needs hours of manual wrangling before any real analysis can begin.
 
 ## The Solution
 
-DataPrepAgent automates data preparation and ML feature engineering using an **8-agent AI pipeline** orchestrated by a supervisor Orchestrator Agent. Upload any messy file, get a detailed quality report, review an AI-generated cleaning plan action by action, then optionally prepare your data for machine learning — all in minutes, not hours.
+DataPrepAgent automates the entire data preparation pipeline using **8 AI agents** orchestrated by a supervisor. Upload a messy file, get a detailed quality report, review the AI-generated cleaning plan action by action, then optionally apply ML feature engineering — all in minutes.
 
-```mermaid
-graph LR
-    O[Orchestrator Agent] --> B[Ingestion Agent]
-    B --> C[Profiler Agent]
-    C --> D[Strategy Agent]
-    D --> E[👤 Human Review]
-    E --> F[Cleaner Agent]
-    F --> G[Validator Agent]
-    G -->|score < target| D
-    G --> H{ML-Ready?}
-    H -->|Yes| I[Feature Engineering Agent]
-    I --> J[👤 Human Review]
-    J --> K[Feature Transformer Agent]
-    K --> L[Download ML-Ready File]
-    H -->|No| M[Download Clean File]
-    O -.->|A2A messages| B & C & D & F & G & I & K
+---
+
+## Architecture
+
+![DataPrepAgent Demo](docs/twoshakes_architecture.svg)
+
 ```
 
 ---
 
-## Hero Technologies
+## Built With
 
 | Technology | Role |
 |---|---|
-| **Microsoft Azure AI Foundry** | Hosts GPT-4o; all 3 LLM agents call it via `AgentClient` |
-| **Microsoft Agent Framework** (`azure-ai-projects`) | `AIProjectClient.agents` API — creates Azure AI Agents with per-call threads; falls back to `AzureOpenAI` if unavailable |
-| **Azure AI Document Intelligence** | `prebuilt-layout` model extracts tables from PDF / scanned files |
-| **MCP Server** (`src/mcp_server.py`) | Exposes the full pipeline as 5 MCP tools — callable from GitHub Copilot Agent Mode, Claude Desktop, or any MCP client |
+| **Microsoft Azure AI Foundry** | Hosts GPT-4o — all 3 LLM agents call it via `AgentClient` |
+| **Microsoft Agent Framework** (`azure-ai-projects`) | `AIProjectClient.agents` API creates Azure AI Agents with per-call threads; falls back to `AzureOpenAI` if unavailable |
+| **Azure AI Document Intelligence** | `prebuilt-layout` model extracts tables from PDFs and scanned images |
+| **MCP Server** (`src/mcp_server.py`) | 7 MCP tools — callable from **GitHub Copilot Agent Mode**, Claude Desktop, or any MCP client |
 | **Azure App Service** | One-command cloud deployment via `bash infra/deploy.sh` |
+| **GitHub Copilot** | AI-assisted development in VS Code; Agent Mode consumes MCP tools |
+| **scikit-learn** | All 18 ML transformation functions (scalers, encoders, transformers) |
+| **Streamlit** | UI framework with custom design system (#5A2215 brand, DM Serif Display typography, 500-line CSS) |
+
+---
+
+## What Makes This Different
+
+**🧠 LLM reasons, Python executes.**
+The model analyzes your data and proposes a plan. But actual transformations are deterministic pandas and scikit-learn functions. The AI never generates or modifies data values directly — no hallucinated data, no surprises.
+
+**👤 Human-in-the-loop at every decision point.**
+Both the cleaning plan and the feature engineering plan are presented as reviewable lists. Toggle each action on or off. Edit fill strategies. Change scaling methods. Nothing runs until you approve it.
+
+**🔄 Self-healing pipeline.**
+If the cleaned data still scores below the quality target, the Orchestrator Agent automatically re-runs the Strategy and Cleaner agents with refined parameters — up to 2 retry attempts.
+
+**📋 Enterprise audit trail.**
+Every pipeline run produces an append-only JSONL audit log with SHA-256 file hashes, quality scores, approved/rejected actions, LLM call counts, and backend details. No raw data is stored — only metadata.
+
+**🔌 MCP-native.**
+The full pipeline is exposed as 7 MCP tools. Connect from GitHub Copilot Agent Mode, Claude Desktop, or any MCP client and run data preparation programmatically.
 
 ---
 
 ## Features
 
-- **Multi-format ingestion** — CSV, TSV, Excel (merged cells/multi-row headers), JSON (nested API flattening), XML (attribute extraction), **PDF** (Azure Document Intelligence table extraction)
-- **AI-powered profiling** — Statistical analysis (types, missing values, outliers, duplicates) enriched with LLM semantic understanding via Azure AI Foundry
-- **Orchestrated multi-agent pipeline** — Orchestrator Agent drives all sub-agents via A2A messaging; automatically re-runs Strategy+Cleaner if quality score < target
-- **Human-in-the-loop cleaning plans** — Approve or reject each proposed fix; edit fill strategies and outlier actions before executing
-- **Deterministic transformations** — LLM reasons about *what* to fix; pandas/sklearn executes it. No hallucinated data.
-- **Before/after validation** — 6 automated checks + LLM-generated quality certificate
-- **Feature Engineering Agent** — AI-recommended ML transformations (encoding, scaling, distribution transforms, feature creation, feature selection) with human review before execution
-- **MCP server** — Full pipeline (cleaning + feature engineering) accessible as 7 tools from GitHub Copilot Agent Mode and any MCP client
-- **Enterprise audit log** — Append-only JSONL audit trail (no raw data, only hashes + stats) for governance and cost tracking
-- **Premium UI** — Custom design system with DM Serif Display typography, brand color palette, and polished component library
-- **Export to CSV / Excel / Parquet** — One-click download in your preferred format (clean data and ML-ready data)
+- **Multi-format ingestion** — CSV, TSV, Excel (merged cells, multi-row headers), JSON (nested API flattening), XML, PDF tables (Azure Document Intelligence)
+- **AI-powered profiling** — Statistical analysis enriched with LLM semantic understanding (column meaning, cross-column inconsistencies)
+- **8-agent orchestrated pipeline** — Orchestrator drives sub-agents via A2A messaging with automatic retry
+- **Human-in-the-loop cleaning** — Review every action before execution; edit parameters, toggle approvals
+- **Deterministic transformations** — 11 cleaning action types + 18 feature engineering transforms, all backed by pandas/sklearn
+- **Before/after validation** — 6 automated checks + LLM-generated quality certificate with 0–100 score
+- **Feature engineering** — AI-recommended encoding (one-hot, label, ordinal, target, frequency), scaling (standard, min-max, robust, max-abs), distribution transforms (log, power, quantile), feature creation (interaction, polynomial), feature selection (low variance, high cardinality, high correlation)
+- **Export** — CSV, Excel, Parquet in one click (clean data and ML-ready data)
+- **Premium UI** — Custom design system with DM Serif Display, branded palette, polished components
+- **Enterprise governance** — Append-only audit log, content filtering via Azure Foundry, no PII in LLM calls
 
 ---
 
@@ -74,21 +97,71 @@ graph LR
 
 | Upload | Profile |
 |---|---|
-| *File dropzone with format badges, styled file card, st.status progress* | *CSS circular quality gauge, column type badges, per-column expanders* |
+| ![Upload](docs/screenshots/upload.png) | ![Profile](docs/screenshots/profile.png) |
 
 | Cleaning Plan | Results |
 |---|---|
-| *Priority-bordered action cards with toggles, Select All/Deselect All* | *Before/after metrics, tabbed data preview, quality certificate, downloads* |
+| ![Plan](docs/screenshots/plan.png) | ![Results](docs/screenshots/results.png) |
 
 | Feature Engineering | |
 |---|---|
-| *Grouped actions (Encoding / Scaling / Distribution / Creation / Selection), ML-ready download* | |
+| ![FE](docs/screenshots/MLready.png) | |
+
+| Download | |
+|---|---|
+| ![FE](docs/screenshots/download.png) | |
+
+---
+
+## Quick Start
+
+```bash
+git clone https://github.com/Steve-Git9/TwoShakes.git
+cd TwoShakes
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env             # fill in your Azure credentials
+streamlit run frontend/app.py
+```
+
+Open http://localhost:8501 and upload any of the demo files in `test_data/`.
+
+### Environment Variables
+
+```
+AZURE_AI_PROJECT_ENDPOINT=https://your-project.services.ai.azure.com
+AZURE_AI_PROJECT_KEY=your-api-key
+AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+AZURE_DOCUMENT_INTELLIGENCE_KEY=your-key
+AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT=https://your-resource.cognitiveservices.azure.com
+```
 
 ---
 
 ## MCP Server — Use with GitHub Copilot Agent Mode
 
-DataPrepAgent exposes its full pipeline as MCP tools. Connect from any MCP client:
+DataPrepAgent exposes its full pipeline as MCP tools, designed to work with **GitHub Copilot Agent Mode** and any MCP-compatible client.
+
+**GitHub Copilot Agent Mode** (VS Code):
+Add to your `.vscode/mcp.json`:
+```json
+{
+  "servers": {
+    "dataprepagent": {
+      "command": "python",
+      "args": ["src/mcp_server.py"],
+      "env": {
+        "AZURE_AI_PROJECT_ENDPOINT": "...",
+        "AZURE_AI_PROJECT_KEY": "...",
+        "AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-4o"
+      }
+    }
+  }
+}
+```
+
+Then in Copilot Agent Mode, ask: *"Profile the file test_data/messy_sales.csv and suggest a cleaning plan"* — Copilot will call the MCP tools automatically.
 
 **Claude Desktop** (`~/claude_desktop_config.json`):
 ```json
@@ -100,172 +173,96 @@ DataPrepAgent exposes its full pipeline as MCP tools. Connect from any MCP clien
       "env": {
         "AZURE_AI_PROJECT_ENDPOINT": "...",
         "AZURE_AI_PROJECT_KEY": "...",
-        "AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-4o"
+        "AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-4o-mini"
       }
     }
   }
 }
 ```
 
-**Available MCP Tools:**
-
-**Cleaning Pipeline:**
-
 | Tool | Description |
 |---|---|
-| `profile_data(file_path)` | Ingest a file and return a full ProfileReport JSON |
-| `suggest_cleaning_plan(file_path, profile_json)` | Return a CleaningPlan JSON |
-| `clean_data(file_path, plan_json)` | Execute the plan, return cleaned file path + log |
-| `validate_cleaning(original, cleaned, profile, log)` | Return ValidationReport JSON |
-| `list_supported_formats()` | List supported file extensions |
-
-**Feature Engineering Pipeline:**
-
-| Tool | Description |
-|---|---|
-| `recommend_feature_engineering(cleaned_path, target_column?)` | AI analysis of cleaned data → FeatureEngineeringPlan JSON with 18 transformation types |
-| `apply_feature_engineering(cleaned_path, fe_plan_json)` | Execute approved transformations → ML-ready CSV + FeatureEngineeringLog JSON |
-
----
-
-## Quick Start
-
-```bash
-git clone https://github.com/<user>/dataprepagent.git
-cd dataprepagent
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-cp .env.example .env             # fill in your Azure credentials
-streamlit run frontend/app.py
-```
-
-Then open http://localhost:8501 and upload any of the demo files in `test_data/`.
-
----
-
-## Project Structure
-
-```
-dataprepagent/
-├── frontend/
-│   ├── app.py                        # Entry point: branded sidebar, step indicator, session state
-│   ├── static/
-│   │   └── style.css                 # 500-line master CSS (design system, custom components)
-│   ├── pages/
-│   │   ├── 1_Upload.py               # Dropzone, st.status progress, format badges
-│   │   ├── 2_Profile.py              # CSS quality gauge, column expanders
-│   │   ├── 3_Cleaning_Plan.py        # Priority-bordered action cards + toggles
-│   │   ├── 4_Results.py              # Before/after metrics, certificate, tabbed preview
-│   │   └── 5_Feature_Engineering.py  # Grouped FE actions → ML-ready download
-│   └── components/
-│       ├── ui_helpers.py             # render_metric_card, render_quality_gauge, etc.
-│       ├── file_uploader.py
-│       ├── profile_cards.py
-│       ├── plan_editor.py
-│       └── comparison_view.py
-├── src/
-│   ├── agents/
-│   │   ├── __init__.py               # AgentClient — single LLM wrapper
-│   │   ├── ingestion_agent.py
-│   │   ├── profiler_agent.py
-│   │   ├── strategy_agent.py
-│   │   ├── cleaner_agent.py
-│   │   ├── validator_agent.py
-│   │   ├── orchestrator_agent.py     # Multi-agent orchestration with optional FE phase
-│   │   ├── feature_engineering_agent.py  # Two-phase FE recommendation (stats + LLM)
-│   │   └── feature_transformer_agent.py  # Fault-tolerant FE execution
-│   ├── parsers/
-│   │   ├── __init__.py               # parse_file() dispatcher
-│   │   ├── csv_parser.py
-│   │   ├── excel_parser.py
-│   │   ├── json_parser.py
-│   │   └── xml_parser.py
-│   ├── transformations/
-│   │   ├── type_conversion.py
-│   │   ├── missing_values.py
-│   │   ├── categorical.py
-│   │   ├── datetime_parser.py
-│   │   ├── deduplication.py
-│   │   ├── outliers.py
-│   │   ├── text_cleaning.py
-│   │   └── feature_engineering.py    # 18 sklearn-backed FE transformation functions
-│   ├── governance/
-│   │   └── audit_log.py              # Append-only JSONL audit trail (cleaning + FE)
-│   ├── mcp_server.py                 # 7 MCP tools (cleaning + feature engineering)
-│   └── models/
-│       └── schemas.py                # All Pydantic v2 data contracts (incl. FE models)
-├── .streamlit/
-│   └── config.toml                   # Brand color theme (#5A2215)
-├── test_data/
-│   ├── messy_sales.csv
-│   ├── messy_employees.xlsx
-│   ├── nested_api_response.json
-│   └── messy_products.xml
-├── tests/
-│   ├── test_full_pipeline.py         # End-to-end integration test
-│   ├── test_feature_engineering.py   # 16 unit tests for FE pipeline
-│   ├── test_profiler.py
-│   ├── test_workflow.py
-│   └── test_parsers.py
-├── infra/
-│   ├── deploy.sh                # Azure App Service deployment
-│   └── azure-deployment.md     # Step-by-step deployment guide
-├── docs/
-│   └── architecture.md
-├── startup.sh                   # App Service startup command
-├── requirements.txt
-└── .env.example
-```
+| `profile_data` | Ingest a file and return a full ProfileReport JSON |
+| `suggest_cleaning_plan` | Generate a CleaningPlan from a profile |
+| `clean_data` | Execute the plan, return cleaned file path + log |
+| `validate_cleaning` | Run 6 checks, return ValidationReport JSON |
+| `list_supported_formats` | List supported file extensions |
+| `recommend_feature_engineering` | AI analysis → FeatureEngineeringPlan with 18 transform types |
+| `apply_feature_engineering` | Execute approved transforms → ML-ready file + log |
 
 ---
 
 ## Agent Details
 
+### Orchestrator Agent
+Supervisor that drives all sub-agents via structured A2A messages. Includes a self-healing loop: if quality score remains below target after cleaning, it sends a retry message back to the Strategy Agent and re-cleans (up to 2 attempts). Optionally triggers the feature engineering phase.
+
 ### Ingestion Agent
-Routes the uploaded file to the correct parser (CSV, Excel, JSON, XML), strips fully empty rows/columns, and returns a `FileMetadata` object describing the file's structure.
+Routes uploaded files to the correct parser (CSV, Excel, JSON, XML, PDF), strips empty rows/columns, and returns a `FileMetadata` object.
 
 ### Profiler Agent
-Two-stage analysis:
-1. **Statistical** — infers column types, computes missing rates, IQR outliers, fuzzy duplicate detection
-2. **LLM semantic enrichment** (via Microsoft Foundry) — interprets column semantics, detects cross-column issues, generates a human-readable quality summary
+Two-stage analysis: (1) statistical — column types, missing rates, IQR outliers, fuzzy duplicate detection, all in Python; (2) LLM semantic enrichment via Azure Foundry — interprets column semantics, detects cross-column inconsistencies, generates a quality summary.
 
 ### Strategy Agent
-Sends the full `ProfileReport` + column sample values to the LLM (Foundry) with a detailed system prompt. Returns a structured `CleaningPlan` — an ordered list of `CleaningAction` objects with priorities and parameters.
+Sends the `ProfileReport` + samples to the LLM with a detailed prompt. Returns an ordered `CleaningPlan` — each action has a type, parameters, priority, and human-readable reason.
 
 ### Cleaner Agent
-Dispatches each *approved* action to deterministic pandas transformation functions. Captures before/after samples, logs every action, and never crashes on individual failures — errors are captured and reported, the pipeline continues.
+Dispatches each approved action to deterministic pandas functions. Captures before/after samples, logs every action. Individual failures are caught and reported — the pipeline continues.
 
 ### Validator Agent
-Runs 6 automated checks (row count, duplicates, null reduction, empty columns, type consistency, transform success rate) then calls the LLM (Foundry) for a narrative quality certificate and `analysis_ready` flag.
+Runs 6 automated checks (row count, duplicates, null reduction, empty columns, type consistency, transform success rate) then calls the LLM for a narrative quality certificate.
 
-### Feature Engineering Agent *(new)*
-Two-phase analysis:
-1. **Statistical** — computes skewness, kurtosis, correlation matrix, cardinality, and variance for every column
-2. **LLM recommendation** (via Microsoft Foundry) — selects from 18 transformation types and orders them correctly (encoding → scaling → distribution → creation → selection)
-
-Supported transformations:
+### Feature Engineering Agent
+Two-stage analysis: (1) statistical — skewness, kurtosis, correlation matrix, cardinality, variance; (2) LLM recommendation — selects from 18 transform types, grouped and ordered (encoding → scaling → distribution → creation → selection).
 
 | Category | Techniques |
 |---|---|
 | Encoding | one-hot, label, ordinal, target (smoothed mean), frequency |
 | Scaling | standard (z-score), min-max, robust (IQR), max-abs |
 | Distribution | log (auto-offset), Yeo-Johnson power, quantile normalization |
-| Feature Creation | interaction products, polynomial features, equal-width binning |
+| Feature Creation | interaction products, polynomial features, binning |
 | Feature Selection | drop low-variance, drop high-cardinality, drop highly-correlated |
 
-### Feature Transformer Agent *(new)*
-Fault-tolerant executor: dispatches each approved `FeatureEngineeringAction` to the correct sklearn-backed function via a `_DISPATCH` dict. Per-action exceptions are captured and logged; the pipeline always continues.
+### Feature Transformer Agent
+Fault-tolerant executor: dispatches each approved `FeatureEngineeringAction` to the correct sklearn-backed function. Per-action exceptions are caught and logged; the pipeline always continues.
+
+---
+
+## Project Structure
+
+```
+TwoShakes/
+├── frontend/                       # Streamlit UI + custom design system
+│   ├── app.py                      # Entry point, sidebar, step routing
+│   ├── static/style.css            # 500-line master CSS
+│   ├── pages/                      # Upload, Profile, Plan, Results, FE
+│   └── components/                 # Reusable UI components
+├── src/
+│   ├── agents/                     # 8 agents (incl. orchestrator, FE)
+│   ├── parsers/                    # CSV, Excel, JSON, XML, PDF parsers
+│   ├── transformations/            # 11 cleaning + 18 FE transform functions
+│   ├── governance/audit_log.py     # Enterprise audit trail
+│   ├── mcp_server.py              # 7 MCP tools
+│   └── models/schemas.py          # All Pydantic v2 data contracts
+├── test_data/                      # Demo messy datasets
+├── tests/                          # Unit + integration tests
+├── infra/                          # Azure deployment scripts
+├── docs/                           # Architecture docs + screenshots
+├── requirements.txt
+├── startup.sh                      # Azure App Service startup
+└── .env.example
+```
 
 ---
 
 ## Responsible AI
 
-- **Human-in-the-loop** — No data is modified without explicit user approval of each cleaning action
-- **No PII in LLM calls** — Only column names, statistics, and 3–5 sample values are sent to the model; raw data never leaves your environment
+- **Human-in-the-loop** — No data is modified without explicit user approval of each action
+- **No PII in LLM calls** — Only column names, statistics, and 3–5 sample values are sent to the model
 - **Transparency** — Every transformation is logged with rows affected and before/after samples
 - **Content filtering** — Azure AI Foundry applies built-in content filters to all model calls
-- **Deterministic execution** — The LLM proposes; Python executes. No AI-generated data values.
+- **Deterministic execution** — The LLM proposes; Python executes. No AI-generated data values
+- **Audit trail** — Append-only JSONL log with SHA-256 file hashes for governance and reproducibility
 
 ---
 
@@ -277,19 +274,6 @@ See [infra/azure-deployment.md](infra/azure-deployment.md) for step-by-step inst
 set -a && source .env && set +a
 bash infra/deploy.sh
 ```
-
----
-
-## Developed With
-
-- **VS Code** + **GitHub Copilot** — development environment and AI-assisted coding
-- **Microsoft Agent Framework (Python)** — agent orchestration (`azure-ai-projects`)
-- **Azure AI Foundry** — GPT-4o model hosting and inference for all LLM agents
-- **Azure AI Document Intelligence** — PDF table extraction (`prebuilt-layout`)
-- **Streamlit** — UI framework, transformed into a premium SaaS-grade experience
-- **Custom Design System** — DM Serif Display + Inter + JetBrains Mono typography; `#5A2215` brand palette; 500-line master CSS
-- **scikit-learn** — All 18 ML transformation functions (scalers, encoders, transformers)
-- **pandas / numpy / plotly** — data processing and visualization
 
 ---
 
