@@ -96,8 +96,8 @@ The full pipeline is exposed as 7 MCP tools. Connect from GitHub Copilot Agent M
 ## Screenshots
 
 | Upload | Profile |
-|---|---|
-| ![Upload](docs/screenshots/upload.png) | ![Profile](docs/screenshots/profile.png) |
+
+![Upload](docs/screenshots/upload.png)  ![Profile](docs/screenshots/profile.png) 
 
 | Cleaning Plan | Results |
 |---|---|
