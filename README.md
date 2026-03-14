@@ -14,7 +14,7 @@
 
 ---
 
-![Two Shakes Demo](docs/gif_TS.gif)
+<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/gif_TS.gif" width="300"/>
 
 ---
 
