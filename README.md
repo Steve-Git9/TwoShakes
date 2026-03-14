@@ -14,6 +14,10 @@
 
 ---
 
+![Two Shakes Demo](docs/gif_TS.gif)
+
+---
+
 ## How It Works in 60 Seconds
 
 1. **Upload** any messy data file — CSV, Excel, JSON, XML, or even a PDF with tables
