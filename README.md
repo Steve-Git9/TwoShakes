@@ -1,4 +1,5 @@
-# <img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/frontend/static/tsLogo.png" width="150"/>
+# Two Shakes Data Cleaning
+<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/frontend/static/tsLogo.png" width="150"/>
 
 AI-Powered Data Preparation: From Messy to Analysis-Ready in **Two Shakes of a Lamb's tail**
 
