@@ -26,6 +26,125 @@ The LLM decides *what* to fix. Python executes it deterministically. Your data, 
 
 ---
 
+## Microsoft Hero Technologies — Where & How They're Used
+
+This section maps every required hackathon technology to the exact source files that implement it.
+
+### ☁️ Microsoft Foundry (Azure AI Foundry)
+
+All LLM calls in DataPrepAgent go through models hosted on Microsoft Foundry. The single LLM client in [`src/agents/__init__.py`](src/agents/__init__.py) connects to the Foundry endpoint using the `AZURE_AI_PROJECT_ENDPOINT` and `AZURE_AI_MODEL_DEPLOYMENT_NAME` environment variables. Three agents make LLM calls — the Profiler (semantic analysis), the Strategy Agent (cleaning plan generation), and the Validator (quality certificate) — plus the Feature Engineering Agent for ML recommendations. Azure Foundry's built-in content filters are active on every call.
+
+**Key code:**
+```python
+# src/agents/__init__.py — AgentClient constructor
+client = AIProjectClient(
+    endpoint=os.getenv("AZURE_AI_PROJECT_ENDPOINT"),
+    credential=AzureKeyCredential(os.getenv("AZURE_AI_PROJECT_KEY"))
+)
+# Creates Azure AI Agent with per-call threads
+agent = client.agents.create_agent(
+    model=os.getenv("AZURE_AI_MODEL_DEPLOYMENT_NAME"),
+    name=self.name,
+    instructions=self.instructions
+)
+```
+
+### 🤖 Microsoft Agent Framework (`azure-ai-projects`)
+
+The [`AgentClient`](src/agents/__init__.py) class uses `azure.ai.projects.AIProjectClient` as its tier-1 backend — the actual Microsoft Agent Framework SDK. It creates real Azure AI Agents with per-call threads and message-based conversations. If the SDK is unavailable (e.g., in environments without the preview package), it falls back gracefully to `openai.AzureOpenAI` pointing at the same Foundry-hosted model. Every agent in the system (Profiler, Strategy, Cleaner, Validator, Feature Engineering, Feature Transformer) uses this single client.
+
+**Files:** [`src/agents/__init__.py`](src/agents/__init__.py) · [`src/agents/orchestrator_agent.py`](src/agents/orchestrator_agent.py) · [`src/agents/profiler_agent.py`](src/agents/profiler_agent.py) · [`src/agents/strategy_agent.py`](src/agents/strategy_agent.py) · [`src/agents/validator_agent.py`](src/agents/validator_agent.py) · [`src/agents/feature_engineering_agent.py`](src/agents/feature_engineering_agent.py) · [`src/agents/feature_transformer_agent.py`](src/agents/feature_transformer_agent.py)
+
+### 🔌 MCP Server (7 tools)
+
+[`src/mcp_server.py`](src/mcp_server.py) exposes the full pipeline as 7 MCP tools via stdio transport. Any MCP-compatible client — including **GitHub Copilot Agent Mode** — can call these tools programmatically. The tools are: `profile_data`, `suggest_cleaning_plan`, `clean_data`, `validate_cleaning`, `list_supported_formats`, `recommend_feature_engineering`, `apply_feature_engineering`.
+
+### 🧑‍💻 GitHub Copilot Agent Mode
+
+The repo includes a [`.vscode/mcp.json`](.vscode/mcp.json) configuration file that registers DataPrepAgent's MCP server as a tool source for GitHub Copilot Agent Mode in VS Code. With this config, a developer can ask Copilot: *"Profile the file test_data/messy_sales.csv and suggest a cleaning plan"* and Copilot will call the MCP tools automatically.
+
+```json
+// .vscode/mcp.json — already in the repo
+{
+  "servers": {
+    "dataprepagent": {
+      "command": "python",
+      "args": ["src/mcp_server.py"],
+      "env": { "AZURE_AI_PROJECT_ENDPOINT": "...", "AZURE_AI_PROJECT_KEY": "...", "AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-4o" }
+    }
+  }
+}
+```
+
+### 📄 Azure AI Document Intelligence
+
+[`src/parsers/pdf_parser.py`](src/parsers/pdf_parser.py) uses Azure AI Document Intelligence's `prebuilt-layout` model to extract tables from PDF files and scanned images. This is a second Azure AI service beyond the LLM, demonstrating multi-service integration on the Azure platform.
+
+### ☁️ Azure App Service (Deployment)
+
+[`infra/deploy.sh`](infra/deploy.sh) provides one-command deployment to Azure App Service. The script creates a resource group, App Service plan (B1 Linux), web app with Python 3.11 runtime, configures all environment variables, and deploys the code. [`startup.sh`](startup.sh) runs Streamlit on port 8000 for the Azure container. Full step-by-step instructions in [`infra/azure-deployment.md`](infra/azure-deployment.md).
+
+---
+
+## Architecture — 8-Agent Orchestrated Pipeline
+
+```mermaid
+graph TB
+    subgraph Azure["☁️ Microsoft Azure Foundry"]
+        GPT["GPT-4o Model<br/><i>azure-ai-projects SDK</i>"]
+        DI["Document Intelligence<br/><i>prebuilt-layout</i>"]
+    end
+
+    ORC["🎯 Orchestrator Agent<br/><i>A2A messaging · retry loop</i>"]
+    
+    subgraph Cleaning["🧹 Cleaning Pipeline"]
+        direction LR
+        ING["Ingestion"] --> PRO["Profiler"]
+        PRO --> STR["Strategy"]
+        STR --> CLN["Cleaner"]
+    end
+
+    HR1["👤 Human Review<br/><i>approve / reject / edit each action</i>"]
+    VAL["✅ Validator<br/><i>6 checks + LLM quality certificate</i>"]
+
+    subgraph FE["🔬 Feature Engineering Pipeline"]
+        direction LR
+        FEA["FE Agent<br/><i>18 transform types</i>"] --> FET["FE Transformer<br/><i>sklearn executor</i>"]
+    end
+
+    HR2["👤 Human Review"]
+    OUT["📥 Download<br/><i>CSV · Excel · Parquet</i>"]
+
+    Azure -.->|API calls| ORC
+    ORC --> Cleaning
+    Cleaning --> HR1
+    HR1 --> VAL
+    VAL -->|"score < target"| STR
+    VAL -->|"clean enough"| FE
+    FE --> HR2
+    HR2 --> OUT
+    VAL -->|"skip ML prep"| OUT
+
+    subgraph Side["🔌 Integrations"]
+        MCP["MCP Server<br/><i>7 tools · stdio</i>"]
+        COPILOT["GitHub Copilot<br/><i>Agent Mode via .vscode/mcp.json</i>"]
+        AUDIT["Audit Log<br/><i>JSONL · SHA-256</i>"]
+    end
+
+    ORC -.-> Side
+```
+
+**Agentic design patterns used:**
+- **Multi-agent collaboration**: 8 specialized agents, each with a single responsibility
+- **Agent-to-agent messaging**: Orchestrator sends structured `AgentMessage` objects to sub-agents
+- **Orchestrator supervisor**: Central coordinator drives the pipeline, manages state, handles errors
+- **Self-healing retry loop**: If quality score < target after cleaning, Orchestrator re-runs Strategy + Cleaner (up to 2 retries)
+- **Human-in-the-loop checkpoints**: Pipeline pauses twice for user approval (cleaning plan + FE plan)
+- **Tool-using agents**: MCP server exposes all agent capabilities as callable tools
+- **Deterministic execution**: LLM reasons about *what* to do; Python code executes it. No AI-generated data values.
+
+---
+
 ## The Problem
 
 Data scientists spend **60–80% of their time** on data cleaning and preparation. Messy CSVs with mixed date formats, Excel exports with merged cells, nested JSON APIs with missing fields — every dataset needs hours of manual wrangling before any real analysis can begin.
@@ -33,29 +152,6 @@ Data scientists spend **60–80% of their time** on data cleaning and preparatio
 ## The Solution
 
 DataPrepAgent automates the entire data preparation pipeline using **8 AI agents** orchestrated by a supervisor. Upload a messy file, get a detailed quality report, review the AI-generated cleaning plan action by action, then optionally apply ML feature engineering — all in minutes.
-
----
-
-## Architecture
-
-![DataPrepAgent Demo](docs/twoshakes_architecture.svg)
-
-```
-
----
-
-## Built With
-
-| Technology | Role |
-|---|---|
-| **Microsoft Azure AI Foundry** | Hosts GPT-4o — all 3 LLM agents call it via `AgentClient` |
-| **Microsoft Agent Framework** (`azure-ai-projects`) | `AIProjectClient.agents` API creates Azure AI Agents with per-call threads; falls back to `AzureOpenAI` if unavailable |
-| **Azure AI Document Intelligence** | `prebuilt-layout` model extracts tables from PDFs and scanned images |
-| **MCP Server** (`src/mcp_server.py`) | 7 MCP tools — callable from **GitHub Copilot Agent Mode**, Claude Desktop, or any MCP client |
-| **Azure App Service** | One-command cloud deployment via `bash infra/deploy.sh` |
-| **GitHub Copilot** | AI-assisted development in VS Code; Agent Mode consumes MCP tools |
-| **scikit-learn** | All 18 ML transformation functions (scalers, encoders, transformers) |
-| **Streamlit** | UI framework with custom design system (#5A2215 brand, DM Serif Display typography, 500-line CSS) |
 
 ---
 
@@ -92,6 +188,7 @@ The full pipeline is exposed as 7 MCP tools. Connect from GitHub Copilot Agent M
 - **Enterprise governance** — Append-only audit log, content filtering via Azure Foundry, no PII in LLM calls
 
 ---
+
 ```
 ## Screenshots
 
@@ -108,6 +205,9 @@ The full pipeline is exposed as 7 MCP tools. Connect from GitHub Copilot Agent M
 | ![FE](docs/screenshots/MLready.png) | ![FE](docs/screenshots/download.png) | |
 
 ```
+
+---
+
 ## Quick Start
 
 ```bash
@@ -127,7 +227,7 @@ Open http://localhost:8501 and upload any of the demo files in `test_data/`.
 ```
 AZURE_AI_PROJECT_ENDPOINT=https://your-project.services.ai.azure.com
 AZURE_AI_PROJECT_KEY=your-api-key
-AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o
 AZURE_DOCUMENT_INTELLIGENCE_KEY=your-key
 AZURE_DOCUMENT_INTELLIGENCE_ENDPOINT=https://your-resource.cognitiveservices.azure.com
 ```
@@ -168,7 +268,7 @@ Then in Copilot Agent Mode, ask: *"Profile the file test_data/messy_sales.csv an
       "env": {
         "AZURE_AI_PROJECT_ENDPOINT": "...",
         "AZURE_AI_PROJECT_KEY": "...",
-        "AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-4o-mini"
+        "AZURE_AI_MODEL_DEPLOYMENT_NAME": "gpt-4o"
       }
     }
   }
@@ -227,6 +327,7 @@ Fault-tolerant executor: dispatches each approved `FeatureEngineeringAction` to 
 
 ```
 TwoShakes/
+├── .vscode/mcp.json                # GitHub Copilot Agent Mode config
 ├── frontend/                       # Streamlit UI + custom design system
 │   ├── app.py                      # Entry point, sidebar, step routing
 │   ├── static/style.css            # 500-line master CSS
@@ -234,15 +335,20 @@ TwoShakes/
 │   └── components/                 # Reusable UI components
 ├── src/
 │   ├── agents/                     # 8 agents (incl. orchestrator, FE)
+│   │   └── __init__.py             # AgentClient — azure-ai-projects + fallback
 │   ├── parsers/                    # CSV, Excel, JSON, XML, PDF parsers
+│   │   └── pdf_parser.py           # Azure Document Intelligence
 │   ├── transformations/            # 11 cleaning + 18 FE transform functions
 │   ├── governance/audit_log.py     # Enterprise audit trail
-│   ├── mcp_server.py              # 7 MCP tools
+│   ├── mcp_server.py              # 7 MCP tools (stdio transport)
 │   └── models/schemas.py          # All Pydantic v2 data contracts
 ├── test_data/                      # Demo messy datasets
 ├── tests/                          # Unit + integration tests
-├── infra/                          # Azure deployment scripts
+├── infra/
+│   ├── deploy.sh                   # Azure App Service deployment
+│   └── azure-deployment.md         # Step-by-step deployment guide
 ├── docs/                           # Architecture docs + screenshots
+├── .streamlit/config.toml          # Streamlit theme config
 ├── requirements.txt
 ├── startup.sh                      # Azure App Service startup
 └── .env.example
