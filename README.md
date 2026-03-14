@@ -12,7 +12,6 @@
 > 🏗️ Built for the **Microsoft Purpose-Built AI Platform Hackathon**
 > Category: **Best Use of Microsoft Foundry** · Also targeting: **Best Multi-Agent System** · **Best Enterprise Solution**
 
-![prova](docs/screenshots/upload.png)
 ---
 
 ## How It Works in 60 Seconds
@@ -94,16 +93,15 @@ The full pipeline is exposed as 7 MCP tools. Connect from GitHub Copilot Agent M
 
 ---
 
-## Screenshots
+Screenshots
 
-![Upload](https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/upload.png)
-![Profile](https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/profile.png)
+![prova](docs/screenshots/upload.png))
+![Profile](docs/screenshots/profile.png)
 ![Plan](https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/plan.png)
 ![Results](https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/results.png)
 ![FE](https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/MLready.png)
 ![DL](https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/download.png)
 
----
 
 ## Quick Start
 
