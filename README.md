@@ -14,7 +14,7 @@
 
 ---
 
-<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/gif_TS.gif" width="300"/>
+<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/gif_TS.gif" width="600"/>
 
 ---
 
