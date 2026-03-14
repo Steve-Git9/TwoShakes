@@ -12,6 +12,7 @@
 > 🏗️ Built for the **Microsoft Purpose-Built AI Platform Hackathon**
 > Category: **Best Use of Microsoft Foundry** · Also targeting: **Best Multi-Agent System** · **Best Enterprise Solution**
 
+![prova](docs/screenshots/upload.png)
 ---
 
 ## How It Works in 60 Seconds
