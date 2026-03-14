@@ -42,6 +42,20 @@ DataPrepAgent automates the entire data preparation pipeline using **8 AI agents
 
 ```
 
+## Screenshots
+
+![Upload](docs/screenshots/upload.png)  ![Profile](docs/screenshots/profile.png) 
+
+![Plan](docs/screenshots/plan.png) ![Results](docs/screenshots/results.png) |
+
+
+![FE](docs/screenshots/MLready.png)
+
+
+![FE](docs/screenshots/download.png)
+
+---
+
 ---
 
 ## Built With
@@ -93,25 +107,7 @@ The full pipeline is exposed as 7 MCP tools. Connect from GitHub Copilot Agent M
 
 ---
 
-## Screenshots
 
-| Upload | Profile |
-
-![Upload](docs/screenshots/upload.png)  ![Profile](docs/screenshots/profile.png) 
-
-| Cleaning Plan | Results |
-|---|---|
-| ![Plan](docs/screenshots/plan.png) | ![Results](docs/screenshots/results.png) |
-
-| Feature Engineering | |
-|---|---|
-| ![FE](docs/screenshots/MLready.png) | |
-
-| Download | |
-|---|---|
-| ![FE](docs/screenshots/download.png) | |
-
----
 
 ## Quick Start
 
