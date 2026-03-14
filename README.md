@@ -173,7 +173,7 @@ Every pipeline run produces an append-only JSONL audit log with SHA-256 file has
 The full pipeline is exposed as 7 MCP tools. Connect from GitHub Copilot Agent Mode, Claude Desktop, or any MCP client and run data preparation programmatically.
 
 ---
-
+```
 ## Features
 
 - **Multi-format ingestion** — CSV, TSV, Excel (merged cells, multi-row headers), JSON (nested API flattening), XML, PDF tables (Azure Document Intelligence)
@@ -186,10 +186,9 @@ The full pipeline is exposed as 7 MCP tools. Connect from GitHub Copilot Agent M
 - **Export** — CSV, Excel, Parquet in one click (clean data and ML-ready data)
 - **Premium UI** — Custom design system with DM Serif Display, branded palette, polished components
 - **Enterprise governance** — Append-only audit log, content filtering via Azure Foundry, no PII in LLM calls
-
+```
 ---
 
-```
 ## Screenshots
 
 | Upload | Profile |
