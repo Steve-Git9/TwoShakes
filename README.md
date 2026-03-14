@@ -92,17 +92,24 @@ The full pipeline is exposed as 7 MCP tools. Connect from GitHub Copilot Agent M
 - **Enterprise governance** — Append-only audit log, content filtering via Azure Foundry, no PII in LLM calls
 
 ---
+```
+| Upload | Profile |
 
-Screenshots
+![Upload](docs/screenshots/upload.png)  ![Profile](docs/screenshots/profile.png) 
 
-![prova](docs/screenshots/upload.png))
-![Profile](docs/screenshots/profile.png)
-![Plan](https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/plan.png)
-![Results](https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/results.png)
-![FE](https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/MLready.png)
-![DL](https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/download.png)
+| Cleaning Plan | Results |
+|---|---|
+| ![Plan](docs/screenshots/plan.png) | ![Results](docs/screenshots/results.png) |
 
+| Feature Engineering | |
+|---|---|
+| ![FE](docs/screenshots/MLready.png) | |
 
+| Download | |
+|---|---|
+| ![FE](docs/screenshots/download.png) | |
+
+```
 ## Quick Start
 
 ```bash
