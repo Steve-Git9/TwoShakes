@@ -14,6 +14,12 @@
 
 ---
 
+# Azure Deployment Link
+
+https://dataprepagent-499e361a.azurewebsites.net/
+
+---
+
 ## DEMO VIDEO
 
 https://youtu.be/wbrhYIQtNJQ
