@@ -95,12 +95,16 @@ The full pipeline is exposed as 7 MCP tools. Connect from GitHub Copilot Agent M
 ```
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/upload.png" width="150"/>
-<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/profile.png" width="150"/>
-<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/plan.png" width="150"/>
-<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/results.png" width="150"/>
-<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/MLready.png" width="150"/>
-<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/download.png" width="150"/>
+| Upload | Profile |
+|---|---|
+| ![Upload](docs/screenshots/upload.png) | ![Profile](docs/screenshots/profile.png) |
+
+| Cleaning Plan | Results |
+|---|---|
+| ![Plan](docs/screenshots/plan.png) | ![Results](docs/screenshots/results.png) |
+
+<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/MLready.png" width="300"/>
+<img src="https://raw.githubusercontent.com/Steve-Git9/TwoShakes/main/docs/screenshots/download.png" width="300"/>
 
 ```
 ## Quick Start
